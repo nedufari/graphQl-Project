@@ -1,0 +1,61 @@
+# ------------------------------------------------------
+# THIS FILE WAS AUTOMATICALLY GENERATED (DO NOT MODIFY)
+# ------------------------------------------------------
+
+type Duties {
+  id: Int!
+  name: String!
+  code: Int!
+  employee: [Employee!]
+}
+
+type Employee {
+  id: Int!
+  firstname: String!
+  lastame: String!
+  designation: String!
+  city: String
+  duty: Duties!
+  dutyid: Int!
+}
+
+type Query {
+  FindAllEmployees: [Employee!]!
+  findoneemployee(id: Int!): Employee!
+  findallduties: [Duties!]!
+  findoneduty(id: Int!): Duties!
+}
+
+type Mutation {
+  createEmployee(employeeInput: InputEmployeeDto!): Employee!
+  updateEmployee(updateEmployee: UpdateEmployeeDto!): Employee!
+  deleteEmployee(id: Int!): Employee!
+  createnewDuties(createnewproject: CreateProjectInputDto!): Duties!
+  updateDuties(updateduties: UpdateDutiesDto!): Duties!
+  deleteDuties(id: Int!): Duties!
+}
+
+input InputEmployeeDto {
+  firstname: String!
+  lastame: String!
+  designation: String!
+  city: String
+  dutyid: Int!
+}
+
+input UpdateEmployeeDto {
+  firstname: String!
+  lastame: String!
+  designation: String!
+  city: String
+}
+
+input CreateProjectInputDto {
+  name: String!
+  code: Int!
+}
+
+input UpdateDutiesDto {
+  name: String!
+  code: Int!
+}
