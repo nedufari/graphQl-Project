@@ -25,12 +25,12 @@ export class DutiesResolver{
     }
 
     @Mutation(()=>Duties,{name:"updateDuties"})
-    updateDuties(@Args("updateduties")updatedto:UpdateDutiesDto){
-        return this.dutiesservice
+    updateDuties(@Args("updateduties")updatedto:UpdateDutiesDto, @Args("id",{type:()=>Int})id:number){
+        return this.dutiesservice.updateDuty(id,updatedto)
     }
 
     @Mutation(()=>Duties,{name:"deleteDuties"})
-    deleteDuties(@Args("id", {type:()=>Int})id:number){
-        return this.dutiesservice
+    async deleteDuties(@Args("id", {type:()=>Int})id:number){
+        return await this.dutiesservice.deleteDuty(id)
     }
 }

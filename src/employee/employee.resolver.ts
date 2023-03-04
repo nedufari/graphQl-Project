@@ -1,5 +1,6 @@
 
-import { Args, Int, Mutation, Query, Resolver } from "@nestjs/graphql";
+import { Args, Int, Mutation, Parent, Query, ResolveField, Resolver } from "@nestjs/graphql";
+import { Duties } from "../Entities/duties.etities";
 import { Employee } from "../Entities/employer.entity";
 import { InputEmployeeDto } from "./dto/inputDto";
 import { UpdateEmployeeDto } from "./dto/update.dto";
@@ -28,13 +29,18 @@ export class EmployeeReolver{
     }
 
     @Mutation(()=>Employee,{name:"updateEmployee"})
-    updateDuties(@Args("updateEmployee")updatedto:UpdateEmployeeDto){
-        return this.employeeservice
+    updateDuties(@Args("updateEmployee")updatedto:UpdateEmployeeDto, @Args('id',{type:()=>Int})id:number){
+        return this.employeeservice.updateEmployee(id, updatedto)
     }
 
     @Mutation(()=>Employee,{name:"deleteEmployee"})
     deleteEmployee(@Args("id", {type:()=>Int})id:number){
-        return this.employeeservice
+        return this.employeeservice.deleteemployee(id)
+    }
+
+    @ResolveField(()=>Duties)
+    duty(@Parent()employee:Employee){
+        return this.employeeservice.getProject(employee.dutyid)
     }
 }
 

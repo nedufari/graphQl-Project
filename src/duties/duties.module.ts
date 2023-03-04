@@ -7,6 +7,7 @@ import { DutiesService } from "./duties.service";
 @Module({
     imports:[TypeOrmModule.forFeature([Duties])],
     providers:[DutiesService, DutiesResolver],
+    exports:[DutiesService]
     
 })
 

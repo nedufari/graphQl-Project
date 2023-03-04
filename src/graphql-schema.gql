@@ -2,13 +2,6 @@
 # THIS FILE WAS AUTOMATICALLY GENERATED (DO NOT MODIFY)
 # ------------------------------------------------------
 
-type Duties {
-  id: Int!
-  name: String!
-  code: Int!
-  employee: [Employee!]
-}
-
 type Employee {
   id: Int!
   firstname: String!
@@ -17,6 +10,13 @@ type Employee {
   city: String
   duty: Duties!
   dutyid: Int!
+}
+
+type Duties {
+  id: Int!
+  name: String!
+  code: Int!
+  employee: [Employee!]
 }
 
 type Query {
@@ -28,10 +28,10 @@ type Query {
 
 type Mutation {
   createEmployee(employeeInput: InputEmployeeDto!): Employee!
-  updateEmployee(updateEmployee: UpdateEmployeeDto!): Employee!
+  updateEmployee(updateEmployee: UpdateEmployeeDto!, id: Int!): Employee!
   deleteEmployee(id: Int!): Employee!
   createnewDuties(createnewproject: CreateProjectInputDto!): Duties!
-  updateDuties(updateduties: UpdateDutiesDto!): Duties!
+  updateDuties(updateduties: UpdateDutiesDto!, id: Int!): Duties!
   deleteDuties(id: Int!): Duties!
 }
 
