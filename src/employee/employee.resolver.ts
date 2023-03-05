@@ -24,7 +24,7 @@ export class EmployeeReolver{
     }
 
     @Mutation(()=>Employee, {name:"createEmployee"}) // the mutatio is for inputs only ie for post 
-    createEmployee(@Args("employeeInput")employee:InputEmployeeDto){
+    createEmployee(@Args("employeeInput")employee:InputEmployeeDto,){
         return this.employeeservice.createEmployee(employee)
     }
 
@@ -38,9 +38,9 @@ export class EmployeeReolver{
         return this.employeeservice.deleteemployee(id)
     }
 
-    @ResolveField(()=>Duties)
-    duty(@Parent()employee:Employee){
-        return this.employeeservice.getProject(employee.dutyid)
-    }
+    // @ResolveField(()=>Duties)
+    // duty(@Parent()employee:Employee){
+    //     return this.employeeservice.getProject(employee.dutyid)
+    
 }
 

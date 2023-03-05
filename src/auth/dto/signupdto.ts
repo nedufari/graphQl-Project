@@ -1,10 +1,9 @@
 import { Field, InputType, Int } from "@nestjs/graphql"
-import { IsEmail, IsString } from "class-validator"
+import { IsString } from "class-validator"
 import { Duties } from "../../Entities/duties.etities"
-import { Roles } from "../../Entities/role.enum"
 
 @InputType()
-export class InputEmployeeDto{
+export class SignUpDto{
    
 
     @Field()
@@ -14,22 +13,18 @@ export class InputEmployeeDto{
     lastame:string
 
     @Field()
-    designation:string
-
-    @Field()
-    @IsEmail()
+    @IsString()
     email:string
 
     @Field()
-    @IsString()
     password:string
+
+    @Field()
+    designation:string
 
     @Field({nullable:true})
     city:string
 
-    // @Field(()=>Int)
-    // dutyid:number
-
-    // @Field()
-    // role:Roles
+    @Field(()=>Int)
+    dutyid:number
 }

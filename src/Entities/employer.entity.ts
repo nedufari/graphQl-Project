@@ -1,6 +1,7 @@
 import { Field, Int, ObjectType } from "@nestjs/graphql"
 import { Column, Entity, ManyToOne, PrimaryGeneratedColumn } from "typeorm"
 import { Duties } from "./duties.etities"
+import { Roles } from "./role.enum"
 
 @ObjectType()
 @Entity()
@@ -14,6 +15,15 @@ export class Employee{
     @Field()
     @Column()
     firstname:string
+
+    @Field()
+    @Column({unique:true, nullable:false})
+    email:string
+
+
+    @Field()
+    @Column({nullable:false,})
+    password:string
 
     @Field()
     @Column()
@@ -35,7 +45,11 @@ export class Employee{
     @Field(()=>Duties)
     duty :Duties
 
-    @Column()
-    @Field(()=>Int)
-    dutyid:number
+    // @Column({nullable:true})
+    // @Field(()=>Int)
+    // dutyid:number
+
+    @Column({type:"enum", enum:Roles, default:Roles.EMPLOYEE, nullable:true})
+    @Field()
+    role:Roles
 }

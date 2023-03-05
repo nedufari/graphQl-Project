@@ -7,6 +7,7 @@ import {TypeOrmModule} from "@nestjs/typeorm"
 import { TypeOrmService } from './typeorm/typeorm.service';
 import { ConfigModule } from '@nestjs/config';
 import { DutiesModule } from './duties/duties.module';
+import { AuthModule } from './auth/auth.module';
 
 @Module({
   imports: [EmployeeModule,GraphQLModule.forRoot<ApolloDriverConfig>({
@@ -15,7 +16,8 @@ import { DutiesModule } from './duties/duties.module';
   }),
   DutiesModule,
 TypeOrmModule.forRootAsync({useClass:TypeOrmService}),
-ConfigModule.forRoot({isGlobal:true}),],
+ConfigModule.forRoot({isGlobal:true}),
+AuthModule],
   controllers: [],
   providers: [],
 })

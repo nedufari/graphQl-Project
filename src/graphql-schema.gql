@@ -2,21 +2,23 @@
 # THIS FILE WAS AUTOMATICALLY GENERATED (DO NOT MODIFY)
 # ------------------------------------------------------
 
-type Employee {
-  id: Int!
-  firstname: String!
-  lastame: String!
-  designation: String!
-  city: String
-  duty: Duties!
-  dutyid: Int!
-}
-
 type Duties {
   id: Int!
   name: String!
   code: Int!
   employee: [Employee!]
+}
+
+type Employee {
+  id: Int!
+  firstname: String!
+  email: String!
+  password: String!
+  lastame: String!
+  designation: String!
+  city: String
+  duty: Duties!
+  role: String!
 }
 
 type Query {
@@ -39,8 +41,9 @@ input InputEmployeeDto {
   firstname: String!
   lastame: String!
   designation: String!
+  email: String!
+  password: String!
   city: String
-  dutyid: Int!
 }
 
 input UpdateEmployeeDto {
